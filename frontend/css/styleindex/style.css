@@ -1,0 +1,86 @@
+body{
+    background-color: teal;
+    width:90%;
+    margin: 0 auto;
+    min-width:600px;
+    max-width:2000px
+}
+#form{
+    background-color: black;
+    border-radius: 20px;
+    width: 28em;
+    height: 13em;
+    margin-left: 30%;
+    margin-top: 15%;
+    padding-left: 2em;
+    padding-top: 2em;
+}
+#form1{
+    color:teal;
+    font-size: 3em;
+    
+}
+#butform{
+    width: 9em;
+    height: 2.5em;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 900;
+    cursor: pointer;
+    
+}
+#texform{
+    width: 20em;
+    height: 2em;
+    font-size: 15px;
+    font-weight: 800;
+    outline: none;
+}
+
+#chat{
+    margin-left: 75px;
+    margin-top: 50px;
+    border-radius: 15px;
+    width: 500px;
+    height: 500px;
+    border: 1px solid black;
+    background-color:beige;
+}
+#textchat{
+    height: 40px;
+    position: relative;
+    width: 400px;
+    border: 2px solid #cdcdcd;
+    border-color: rgba(0, 0, 0, .14);
+    outline: none;
+    border-bottom-left-radius: 15px;
+    margin-top: 4px;
+    background-color: AliceBlue;
+    font-size: 14px;
+}
+#chattxt{
+    background-color: transparent;
+    height: 440px;
+    margin-top:10px ;
+    width: 475px;
+    margin-left: 12.5px;
+}
+#btnchat{
+    background-color: AliceBlue;
+    width: 50px;
+    float: right;
+    width: 96px;
+    height: 45.7px;
+    border: 2px solid #cdcdcd;
+    border-left: none;
+    border-bottom-right-radius: 15px;
+    margin-top:4px ;
+}
+.ola{
+    opacity: 1;
+}
+.ole{
+    opacity: 0;
+}

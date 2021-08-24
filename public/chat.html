@@ -15,11 +15,27 @@
         <input type="button" value="ENVIAR" id="btnchat">
     </div>
     <script>
+        let chat = document.getElementById('chat').style.opacity = 0
         const server = io('http://localhost:8000')
 
         server.on('connect', ()=>{
-            const playerId = server.playerId
-            console.log('hello')
+            
+            
+            
+            server.send('N:'+localStorage.getItem('name'))
+            
+            server.on("message", data => {
+                console.log(data)
+                if(data == 'N'){
+                    
+                    window.alert('The name is already taken!!')
+                    
+                    window.location.replace('/')
+                }if(data != 'N'){
+                    let chat = document.getElementById('chat').style.opacity = 1
+                }
+                
+            });
         })
     </script>
 </body>

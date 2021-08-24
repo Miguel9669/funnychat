@@ -20,7 +20,10 @@
 
     <script>
         function clicar(){
+            let name = document.getElementById('texform').value
+            console.log(name)
             window.location.replace('chat.html')
+            localStorage.setItem('name', name);
         }
     </script>
     

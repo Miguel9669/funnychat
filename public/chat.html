@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="chatstyle/style.css">
+    <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
     <div id="chat" >
@@ -13,5 +14,13 @@
         <input type="text" name="" id="textchat" >
         <input type="button" value="ENVIAR" id="btnchat">
     </div>
+    <script>
+        const server = io('http://localhost:8000')
+
+        server.on('connect', ()=>{
+            const playerId = server.playerId
+            console.log('hello')
+        })
+    </script>
 </body>
 </html>

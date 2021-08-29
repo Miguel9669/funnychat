@@ -10,14 +10,34 @@
 </head>
 <body>
     <div id="chat" >
-        <div id="chattxt">ola</div>
+        <div id="chattxt"></div>
         <input type="text" name="" id="textchat" >
-        <input type="button" value="ENVIAR" id="btnchat">
+        <input type="button" value="ENVIAR" id="btnchat" onclick="enviar()">
     </div>
     <script>
-        let chat = document.getElementById('chat').style.opacity = 0
+        let chat = document.getElementById('chattxt')
         const server = io('http://localhost:8000')
+        function enviar(){
+            let txt1 = document.getElementById('textchat')
+            let txt = document.getElementById('textchat').value
+            server.send('M:' + txt)
+            console.log('enviei')
+            txt1.value = ''
+            criarmymsg(txt)
 
+            
+        }
+        function criarmymsg(msg){
+            
+            chat.innerHTML += `<div style = 'width: 260px; height: auto;float: right;margin-top: 1px;'><div style = 'float: right; width: auto;height: auto; max-width: 250px;display:block;word-wrap:  break-word;'> ${msg}</div></div>`
+        }
+        function criarmsg(msg){
+            chat.innerHTML += `<div style = 'width: 260px; height: auto;float: left;margin-top: 1px;'><div style = 'float: left; width: auto;height: auto; max-width: 250px;display:block;word-wrap:  break-word;'> ${msg}</div></div>`
+        }
+        function msgcomp(msg){
+            chat.innerHTML += `<div style = 'margin-left:35%;width: 260px; height: auto;float: center;margin-top: 1px;'><div style = 'float: center; width: auto;height: auto;color: blue; max-width: 250px;display:block;word-wrap:  break-word;'> ${msg}</div></div>`
+
+        }
         server.on('connect', ()=>{
             
             
@@ -25,17 +45,38 @@
             server.send('N:'+localStorage.getItem('name'))
             
             server.on("message", data => {
-                console.log(data)
+                
                 if(data == 'N'){
                     
                     window.alert('The name is already taken!!')
+                    server.disconnect()
                     
                     window.location.replace('/')
-                }if(data != 'N'){
+                }if(data == 'S'){
                     let chat = document.getElementById('chat').style.opacity = 1
+                }if(data.includes('M:')){
+                    let msg = data.substr(2)
+                    let name = msg.indexOf(':')
+                    console.log(data.substr(2, name))
+                    console.log(localStorage.getItem('name'))
+                    if(data.substr(2, name) == localStorage.getItem('name')){
+                        return 0
+                    }else{
+                        criarmsg(data.substr(2))
+                    }
+                    
+                }if(data.includes('s:')){
+                    let msg = data.substr(2)
+                    msgcomp(msg)
                 }
                 
             });
+
+            document.addEventListener('keypress', function(e){
+                if(e.which == 13){
+                    enviar()
+                }
+            }, false);
         })
     </script>
 </body>
